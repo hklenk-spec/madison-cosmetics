@@ -1219,7 +1219,7 @@ export const Configurator: React.FC = () => {
     <div className="min-h-screen bg-madison-alabaster text-madison-dark font-open selection:bg-madison-gold/20">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20">
         {/* Navigation back and branding info */}
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <button
@@ -1588,18 +1588,18 @@ export const Configurator: React.FC = () => {
                   isFullscreen ? 'fixed inset-0 z-50 rounded-none border-0 w-screen h-screen bg-white' : ''
                 }`}
               >
-                <div className="p-5 border-b border-gray-50 flex items-center justify-between bg-madison-dark text-white">
+                <div className="p-3 sm:p-5 border-b border-gray-50 flex flex-wrap items-center justify-between gap-2 bg-madison-dark text-white">
                   <div className="flex items-center gap-2">
                     <Eye className="w-4 h-4 text-madison-gold" />
-                    <span className="text-xs font-bold tracking-widest uppercase">Echtzeit-Vorschau</span>
+                    <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">Echtzeit-Vorschau</span>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                     {/* Sleek Segmented Switch */}
-                    <div className="flex bg-white/10 p-0.5 rounded-lg border border-white/5 mr-2">
+                    <div className="flex bg-white/10 p-0.5 rounded-lg border border-white/5">
                       <button
                         type="button"
                         onClick={() => setVisualMode('photo')}
-                        className={`text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
+                        className={`text-[10px] font-bold tracking-wider px-2 sm:px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
                           visualMode === 'photo' 
                             ? 'bg-madison-gold text-white shadow-sm' 
                             : 'text-gray-400 hover:text-white'
@@ -1610,7 +1610,7 @@ export const Configurator: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setVisualMode('3d')}
-                        className={`text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
+                        className={`text-[10px] font-bold tracking-wider px-2 sm:px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
                           visualMode === '3d' 
                             ? 'bg-madison-gold text-white shadow-sm' 
                             : 'text-gray-400 hover:text-white'
@@ -1625,7 +1625,7 @@ export const Configurator: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setAutoRotate(!autoRotate)}
-                          className={`flex items-center gap-1.5 text-xs transition px-3 py-1.5 rounded-lg border cursor-pointer ${
+                          className={`flex items-center gap-1.5 text-xs transition px-2 sm:px-3 py-1.5 rounded-lg border cursor-pointer ${
                             !autoRotate
                               ? 'bg-madison-gold text-white border-madison-gold hover:bg-madison-gold/90'
                               : 'bg-white/10 text-gray-300 border-white/10 hover:bg-white/20 hover:text-white'
@@ -1637,41 +1637,41 @@ export const Configurator: React.FC = () => {
                           ) : (
                             <Play className="w-3.5 h-3.5 text-madison-gold" />
                           )}
-                          <span>{autoRotate ? 'Anhalten' : 'Drehen'}</span>
+                          <span className="hidden sm:inline">{autoRotate ? 'Anhalten' : 'Drehen'}</span>
                         </button>
 
                         <button
                           type="button"
                           onClick={() => setIsExploded(!isExploded)}
-                          className={`flex items-center gap-1.5 text-xs transition px-3 py-1.5 rounded-lg border cursor-pointer ${
+                          className={`flex items-center gap-1.5 text-xs transition px-2 sm:px-3 py-1.5 rounded-lg border cursor-pointer ${
                             isExploded 
                               ? 'bg-madison-gold text-white border-madison-gold hover:bg-madison-gold/90' 
                               : 'bg-white/10 text-gray-300 border-white/10 hover:bg-white/20 hover:text-white'
                           }`}
                         >
                           <Layers className="w-3.5 h-3.5 animate-pulse" />
-                          <span>{isExploded ? 'Baugruppe montiert' : 'Explosionsansicht'}</span>
+                          <span className="hidden sm:inline">{isExploded ? 'Baugruppe montiert' : 'Explosionsansicht'}</span>
                         </button>
                       </>
                     )}
                     <button
                       type="button"
                       onClick={toggleFullscreen}
-                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-white transition bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg border border-white/10 cursor-pointer"
+                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-white transition bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1.5 rounded-lg border border-white/10 cursor-pointer"
                     >
                       {isFullscreen ? (
                         <>
                           <Minimize2 className="w-3.5 h-3.5 text-madison-gold" />
-                          <span>Vollbild beenden</span>
+                          <span className="hidden sm:inline">Vollbild beenden</span>
                         </>
                       ) : (
                         <>
                           <Maximize2 className="w-3.5 h-3.5 text-madison-gold" />
-                          <span>Vollbildmodus</span>
+                          <span className="hidden sm:inline">Vollbildmodus</span>
                         </>
                       )}
                     </button>
-                    <span className="text-[9px] font-bold tracking-widest text-madison-gold bg-white/10 px-2 py-1 rounded">
+                    <span className="hidden md:inline text-[9px] font-bold tracking-widest text-madison-gold bg-white/10 px-2 py-1 rounded">
                       Madison Studio
                     </span>
                   </div>
@@ -1679,7 +1679,7 @@ export const Configurator: React.FC = () => {
 
                 {/* High-End Visual Mockup Rendering based on Selection */}
                 <div className={`bg-gradient-to-b from-madison-alabaster to-white flex items-center justify-center relative overflow-hidden select-none border-b border-gray-100 flex-grow ${
-                  isFullscreen ? 'h-full w-full' : 'h-[420px]'
+                  isFullscreen ? 'h-full w-full' : 'h-[280px] sm:h-[420px]'
                 }`}>
                   {visualMode === 'photo' ? (
                     <div className="relative w-full h-full flex items-center justify-center bg-[#FCFAF6]">
@@ -1792,21 +1792,21 @@ export const Configurator: React.FC = () => {
               <div
                 ref={visualizerContainerRef}
                 className={`bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm flex flex-col relative transition-all duration-300 w-full ${
-                  isFullscreen ? 'fixed inset-0 z-50 rounded-none border-0 w-screen h-screen bg-white' : 'h-[500px] lg:h-[620px]'
+                  isFullscreen ? 'fixed inset-0 z-50 rounded-none border-0 w-screen h-screen bg-white' : 'h-[340px] sm:h-[500px] lg:h-[620px]'
                 }`}
               >
-                <div className="p-5 border-b border-gray-50 flex items-center justify-between bg-madison-dark text-white">
+                <div className="p-3 sm:p-5 border-b border-gray-50 flex flex-wrap items-center justify-between gap-2 bg-madison-dark text-white">
                   <div className="flex items-center gap-2">
                     <Eye className="w-4 h-4 text-madison-gold" />
-                    <span className="text-xs font-bold tracking-widest uppercase">Atelier Focus Stage</span>
+                    <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">Atelier Focus Stage</span>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                     {/* Sleek Segmented Switch */}
-                    <div className="flex bg-white/10 p-0.5 rounded-lg border border-white/5 mr-2">
+                    <div className="flex bg-white/10 p-0.5 rounded-lg border border-white/5">
                       <button
                         type="button"
                         onClick={() => setVisualMode('photo')}
-                        className={`text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
+                        className={`text-[10px] font-bold tracking-wider px-2 sm:px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
                           visualMode === 'photo' 
                             ? 'bg-madison-gold text-white shadow-sm' 
                             : 'text-gray-400 hover:text-white'
@@ -1817,7 +1817,7 @@ export const Configurator: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setVisualMode('3d')}
-                        className={`text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
+                        className={`text-[10px] font-bold tracking-wider px-2 sm:px-2.5 py-1 rounded-md transition cursor-pointer uppercase ${
                           visualMode === '3d' 
                             ? 'bg-madison-gold text-white shadow-sm' 
                             : 'text-gray-400 hover:text-white'
@@ -1832,7 +1832,7 @@ export const Configurator: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setAutoRotate(!autoRotate)}
-                          className={`flex items-center gap-1.5 text-xs transition px-3 py-1.5 rounded-lg border cursor-pointer ${
+                          className={`flex items-center gap-1.5 text-xs transition px-2 sm:px-3 py-1.5 rounded-lg border cursor-pointer ${
                             !autoRotate
                               ? 'bg-madison-gold text-white border-madison-gold hover:bg-madison-gold/90'
                               : 'bg-white/10 text-gray-300 border-white/10 hover:bg-white/20 hover:text-white'
@@ -1844,41 +1844,41 @@ export const Configurator: React.FC = () => {
                           ) : (
                             <Play className="w-3.5 h-3.5 text-madison-gold" />
                           )}
-                          <span>{autoRotate ? 'Anhalten' : 'Drehen'}</span>
+                          <span className="hidden sm:inline">{autoRotate ? 'Anhalten' : 'Drehen'}</span>
                         </button>
 
                         <button
                           type="button"
                           onClick={() => setIsExploded(!isExploded)}
-                          className={`flex items-center gap-1.5 text-xs transition px-3 py-1.5 rounded-lg border cursor-pointer ${
+                          className={`flex items-center gap-1.5 text-xs transition px-2 sm:px-3 py-1.5 rounded-lg border cursor-pointer ${
                             isExploded 
                               ? 'bg-madison-gold text-white border-madison-gold hover:bg-madison-gold/90' 
                               : 'bg-white/10 text-gray-300 border-white/10 hover:bg-white/20 hover:text-white'
                           }`}
                         >
                           <Layers className="w-3.5 h-3.5 animate-pulse" />
-                          <span>{isExploded ? 'Baugruppe montiert' : 'Explosionsansicht'}</span>
+                          <span className="hidden sm:inline">{isExploded ? 'Baugruppe montiert' : 'Explosionsansicht'}</span>
                         </button>
                       </>
                     )}
                     <button
                       type="button"
                       onClick={toggleFullscreen}
-                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-white transition bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg border border-white/10 cursor-pointer"
+                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-white transition bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1.5 rounded-lg border border-white/10 cursor-pointer"
                     >
                       {isFullscreen ? (
                         <>
                           <Minimize2 className="w-3.5 h-3.5 text-madison-gold" />
-                          <span>Vollbild beenden</span>
+                          <span className="hidden sm:inline">Vollbild beenden</span>
                         </>
                       ) : (
                         <>
                           <Maximize2 className="w-3.5 h-3.5 text-madison-gold" />
-                          <span>Vollbildmodus</span>
+                          <span className="hidden sm:inline">Vollbildmodus</span>
                         </>
                       )}
                     </button>
-                    <span className="text-[9px] font-bold tracking-widest text-madison-gold bg-white/10 px-2 py-1 rounded">
+                    <span className="hidden md:inline text-[9px] font-bold tracking-widest text-madison-gold bg-white/10 px-2 py-1 rounded">
                       Madison Studio
                     </span>
                   </div>
@@ -1944,7 +1944,7 @@ export const Configurator: React.FC = () => {
             </div>
 
             {/* Guided Step Sidebar (4 Columns) */}
-            <div className="lg:col-span-4 bg-white rounded-2xl border border-gray-100 shadow-md p-6 md:p-8 flex flex-col justify-between min-h-[500px] lg:h-[620px] overflow-hidden">
+            <div className="lg:col-span-4 bg-white rounded-2xl border border-gray-100 shadow-md p-4 sm:p-6 md:p-8 flex flex-col justify-between min-h-[400px] lg:h-[620px] overflow-hidden">
               {(() => {
                 const visibleSteps = currentCategory.steps.filter(isStepVisible);
                 const currentStep = visibleSteps[activeStepIndex];
