@@ -682,13 +682,13 @@ export const ThreeDVisualizer: React.FC<ThreeDVisualizerProps> = ({
           clearcoat: 0.8
         });
         const capMesh = new THREE.Mesh(capGeo, capMat);
-        // Position on top-right end
-        const offsetDist = penLength / 2 - 0.4;
-        capMesh.position.set(-offsetDist * Math.cos(Math.PI/4), offsetDist * Math.sin(Math.PI/4), 0);
+        // Position snugly on top-right end (assembled)
+        const capOffset = penLength / 2 - 0.45;
+        capMesh.position.set(-capOffset * Math.cos(Math.PI/4), capOffset * Math.sin(Math.PI/4), 0);
         capMesh.rotation.z = Math.PI / 4;
         capMesh.rotation.y = Math.PI / 6;
         capMesh.castShadow = true;
-        capMesh.userData = { partKey: 'materialart' };
+        capMesh.userData = { partKey: 'pen_cap' };
         modelGroup.add(capMesh);
 
         // Texture color representation (Tip on the other end)
@@ -705,11 +705,11 @@ export const ThreeDVisualizer: React.FC<ThreeDVisualizerProps> = ({
           metalness: texture === 'MGL' ? 0.65 : 0.05
         });
         const tipMesh = new THREE.Mesh(tipGeo, tipMat);
-        const tipOffset = -penLength / 2 - 0.14;
-        tipMesh.position.set(-tipOffset * Math.cos(Math.PI/4), tipOffset * Math.sin(Math.PI/4), 0);
+        const tipOffset = penLength / 2 + 0.14;
+        tipMesh.position.set(tipOffset * Math.cos(Math.PI/4), -tipOffset * Math.sin(Math.PI/4), 0);
         tipMesh.rotation.z = Math.PI / 4 + Math.PI;
         tipMesh.rotation.y = Math.PI / 6;
-        tipMesh.userData = { partKey: 'textur' };
+        tipMesh.userData = { partKey: 'pen_tip' };
         modelGroup.add(tipMesh);
 
         // Applicator / End Cap (Bottom-Left)
@@ -738,7 +738,7 @@ export const ThreeDVisualizer: React.FC<ThreeDVisualizerProps> = ({
           endMesh.rotation.z = Math.PI / 4 + (endCap === 'pinsel' ? Math.PI : 0);
           endMesh.rotation.y = Math.PI / 6;
           endMesh.castShadow = true;
-          endMesh.userData = { partKey: 'endkappe' };
+          endMesh.userData = { partKey: 'pen_endcap' };
           modelGroup.add(endMesh);
         }
       }
@@ -930,6 +930,21 @@ export const ThreeDVisualizer: React.FC<ThreeDVisualizerProps> = ({
         } else if (partKey === 'flaschenveredelung') {
           // Label floats outwards
           child.position.z = basePos.z + currentExplodeFactor * 0.35;
+        } else if (partKey === 'pen_cap') {
+          // Pen protective cap slides away along the pen axis
+          const explodeDir = 1.2;
+          child.position.x = basePos.x - currentExplodeFactor * explodeDir * Math.cos(Math.PI/4);
+          child.position.y = basePos.y + currentExplodeFactor * explodeDir * Math.sin(Math.PI/4);
+        } else if (partKey === 'pen_tip') {
+          // Pen tip slides away from the body
+          const explodeDir = 1.0;
+          child.position.x = basePos.x + currentExplodeFactor * explodeDir * Math.cos(Math.PI/4);
+          child.position.y = basePos.y - currentExplodeFactor * explodeDir * Math.sin(Math.PI/4);
+        } else if (partKey === 'pen_endcap') {
+          // End cap slides away
+          const explodeDir = 1.2;
+          child.position.x = basePos.x - currentExplodeFactor * explodeDir * Math.cos(Math.PI/4);
+          child.position.y = basePos.y + currentExplodeFactor * explodeDir * Math.sin(Math.PI/4);
         }
       });
 
